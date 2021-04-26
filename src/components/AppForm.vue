@@ -44,7 +44,12 @@
 
       <div class="form-control" :class="{ invalid: v$.phone.$error }">
         <label for="phone">Номер телефона*</label>
-        <input type="tel" id="phone" v-model="phone" @blur="v$.phone.$touch" />
+        <input
+          type="tel"
+          id="phone"
+          :value="isPhone(phone)"
+          @blur="v$.phone.$touch"
+        />
         <small v-if="v$.phone.$error">Введите номер телефона</small>
       </div>
 
@@ -205,6 +210,7 @@
 <script>
 import { required, minLength } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
+import { isPhone } from "../utils/valid";
 
 export default {
   name: "HelloWorld",
@@ -215,6 +221,7 @@ export default {
   setup() {
     return {
       v$: useVuelidate(),
+      isPhone,
     };
   },
 
@@ -224,7 +231,7 @@ export default {
       lastName: null,
       middleName: null,
       DateOfBirth: null,
-      phone: null,
+      phone: [],
       gender: null,
       clientGroup: [],
       doctor: null,
