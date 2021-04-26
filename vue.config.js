@@ -1,3 +1,4 @@
-module.export = {
-  publicPath: "/test-task-vue-form/",
+module.exports = {
+  publicPath:
+    process.env.NODE_ENV === "production" ? "/test-task-vue-form/" : "/",
 };
